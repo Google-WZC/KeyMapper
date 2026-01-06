@@ -99,6 +99,10 @@ int main() {
         } else if (ch == 26) { // Ctrl+D (Unix) or Ctrl+Z (Windows) to exit
             printf("\nEOF detected, exiting...\n");
             break;
+        } else if (ch == '\b') { // 退格键
+            printf("Backspace detected, ignoring...\n");
+            printf("Press %c", symbols[r]);
+            goto label_;
         } else { // 输入错误
             Key rightKey, yourKey;
             for (int lineId = 0; lineId < 4; lineId++) {
@@ -136,9 +140,8 @@ int main() {
     }
     end_time = time(NULL);
     time_t diff = difftime(end_time, start_time);
-    printf("Total Sec   %d\n", diff);
-    printf("Total Score %d\n", flag);
-    printf("CPS         %d\n", flag / diff);
-
+    printf("Total Sec       %d\n", diff);
+    printf("Total Score     %d\n", flag);
+    printf("SecPerPress     %d\n", diff / (10 * flag));
     return 0;
 }

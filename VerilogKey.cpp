@@ -116,17 +116,17 @@ int main() {
             short lineDist, rowDist;
             keyDist(&rightKey, &yourKey, &lineDist, &rowDist);
             if (lineDist >= 0 && rowDist >= 0) {
-                printf("You pressed %c, expected %c, right %d, down %d", ch,
-                       symbols[r], lineDist, rowDist);
+                printf("Expected %c, you pressed %c, right %d, down %d",
+                       symbols[r], ch, lineDist, rowDist);
             } else if (lineDist >= 0 && rowDist < 0) {
-                printf("You pressed %c, expected %c, right %d, up %d", ch,
-                       symbols[r], lineDist, -rowDist);
+                printf("Expected %c, you pressed %c, right %d, up %d",
+                       symbols[r], ch, lineDist, -rowDist);
             } else if (lineDist < 0 && rowDist >= 0) {
-                printf("You pressed %c, expected %c, left %d, down %d", ch,
-                       symbols[r], -lineDist, rowDist);
+                printf("Expected %c, you pressed %c, left %d, down %d",
+                       symbols[r], ch, -lineDist, rowDist);
             } else {
-                printf("You pressed %c, expected %c, left %d, up %d", ch,
-                       symbols[r], -lineDist, -rowDist);
+                printf("Expected %c, you pressed %c, left %d, up %d",
+                       symbols[r], ch, -lineDist, -rowDist);
             } // 计算距离并输出提示
             cnt = 0;     // 错误则清零
             goto label_; // 跳转到行22，重新输入，必须输入前面的符号

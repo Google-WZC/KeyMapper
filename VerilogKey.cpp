@@ -74,12 +74,12 @@ void keyDist(Key *rightKey, Key *wrong, short *lineDist,
 int main() {
     srand(time(NULL)); // 初始化随机数种子
     int cnt = 0, flag = 0;
-    char symbols[23] = {';', ',', ':', '*', '[', ']', '@', '\'',
-                        '<', '&', '(', ')', '!', '{', '}', '^',
-                        '-', '_', '+', '%', '$', '~', '`'};
+    char symbols[] = {';', ',', ':', '*', '[', ']', '@', '\'', '<', '&', '(',
+                      ')', '!', '{', '}', '^', '-', '_', '+',  '$', '~', '`'};
+    int num_symbols = sizeof(symbols) / sizeof(symbols[0]);
 
     while (true) {
-        int r = rand() % 23; // 0 到 22
+        int r = rand() % num_symbols; // 0 到 num_symbols-1
         printf("Press %c", symbols[r]);
 
     label_:

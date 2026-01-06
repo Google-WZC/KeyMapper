@@ -78,6 +78,8 @@ int main() {
                       ')', '!', '{', '}', '^', '-', '_', '+',  '$', '~', '`'};
     int num_symbols = sizeof(symbols) / sizeof(symbols[0]);
 
+    time_t start_time, end_time;
+    start_time = time(NULL); // or time(&start);
     while (true) {
         int r = rand() % num_symbols; // 0 到 num_symbols-1
         printf("Press %c", symbols[r]);
@@ -132,8 +134,11 @@ int main() {
             goto label_; // 跳转到行22，重新输入，必须输入前面的符号
         }
     }
-
+    end_time = time(NULL);
+    time_t diff = difftime(end_time, start_time);
+    printf("Total Sec   %d\n", diff);
     printf("Total Score %d\n", flag);
+    printf("CPS         %d\n", flag / diff);
 
     return 0;
 }

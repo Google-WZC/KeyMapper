@@ -74,8 +74,10 @@ void keyDist(Key *rightKey, Key *wrong, short *lineDist,
 int main() {
     srand(time(NULL)); // 初始化随机数种子
     int cnt = 0, flag = 0;
-    char symbols[] = {';', ',', ':', '*', '[', ']', '@', '\'', '<', '&', '(',
-                      ')', '!', '{', '}', '^', '-', '_', '+',  '$', '~', '`'};
+    char symbols[] = {
+        ';', ',', ':', '*', '[', ']', '@', '\'', '<', '&',
+        '(', ')', '!', '{', '}', '^', '-', '_',  '+', '$',
+        '~', '`', '=', '|', '>', '?', '.', '#',  '\"' /*, '\\', '/', '%'*/};
     int num_symbols = sizeof(symbols) / sizeof(symbols[0]);
 
     time_t start_time, end_time;
@@ -139,9 +141,9 @@ int main() {
         }
     }
     end_time = time(NULL);
-    time_t diff = difftime(end_time, start_time);
-    printf("Total Sec       %d\n", diff);
+    double diff = difftime(end_time, start_time);
+    printf("Total Sec       %.0f\n", diff); // 十进制之后不显示小鼠
     printf("Total Score     %d\n", flag);
-    printf("SecPerPress     %d\n", diff / (10 * flag));
+    printf("SecPerPress     %.2f\n", diff / (10 * flag)); // 显示两位小数
     return 0;
 }

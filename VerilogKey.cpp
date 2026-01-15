@@ -74,18 +74,63 @@ void keyDist(Key *rightKey, Key *wrong, short *lineDist,
 int main() {
     srand(time(NULL)); // 初始化随机数种子
     int cnt = 0, flag = 0;
-    char symbols[] = {
+    char verilog_symbols[] = {
         ';', ',', ':', '*', '[', ']', '@', '\'', '<', '&',
         '(', ')', '!', '{', '}', '^', '-', '_',  '+', '$',
         '~', '`', '=', '|', '>', '?', '.', '#',  '\"' /*, '\\', '/', '%'*/};
-    int num_symbols = sizeof(symbols) / sizeof(symbols[0]);
+    char numbers[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
+    char text_symbols[] = {
+        'a', 'A', 'b', 'B', 'c', 'C', 'd', 'D', 'e', 'E', 'f', 'F', 'g',
+        'G', 'h', 'H', 'i', 'I', 'j', 'J', 'k', 'K', 'l', 'L', 'm', 'M',
+        'n', 'N', 'o', 'O', 'p', 'P', 'q', 'Q', 'r', 'R', 's', 'S', 't',
+        'T', 'u', 'U', 'v', 'V', 'w', 'W', 'x', 'X', 'y', 'Y', 'z', 'Z'};
+    char all_symbols[] = {
+        ';', ',', ':',  '*', '[', ']', '@', '\'', '<', '&', '(', ')', '!',
+        '{', '}', '^',  '-', '_', '+', '$', '~',  '`', '=', '|', '>', '?',
+        '.', '#', '\"', '0', '1', '2', '3', '4',  '5', '6', '7', '8', '9',
+        'a', 'A', 'b',  'B', 'c', 'C', 'd', 'D',  'e', 'E', 'f', 'F', 'g',
+        'G', 'h', 'H',  'i', 'I', 'j', 'J', 'k',  'K', 'l', 'L', 'm', 'M',
+        'n', 'N', 'o',  'O', 'p', 'P', 'q', 'Q',  'r', 'R', 's', 'S', 't',
+        'T', 'u', 'U',  'v', 'V', 'w', 'W', 'x',  'X', 'y', 'Y', 'z', 'Z'};
+
+    printf("Press 0 VERILOG MODE\nPress 1 NUM MODE\nPress 2 TEXT MODE\nPress 3 "
+           "ALL MODE\n");
+    char MODE = _getch();
+    char *symbols;
+    while (!(MODE == '0' || MODE == '1' || MODE == '2' || MODE == '3')) {
+        printf("Press 0 or 1 or 2 or 3\n");
+        MODE = _getch();
+    }
+
+    int num_symbols;
+    switch (MODE) {
+    case '0':
+        symbols = verilog_symbols;
+        num_symbols = sizeof(verilog_symbols) / sizeof(verilog_symbols[0]);
+        break;
+    case '1':
+        symbols = numbers;
+        num_symbols = sizeof(numbers) / sizeof(numbers[0]);
+        break;
+    case '2':
+        symbols = text_symbols;
+        num_symbols = sizeof(text_symbols) / sizeof(text_symbols[0]);
+        break;
+    case '3':
+        symbols = all_symbols;
+        num_symbols = sizeof(all_symbols) / sizeof(all_symbols[0]);
+        break;
+    default:
+        printf("Press 0 1 2 or 3\n");
+        MODE = _getch();
+        break;
+    }
 
     time_t start_time, end_time;
     start_time = time(NULL); // or time(&start);
     while (true) {
         int r = rand() % num_symbols; // 0 到 num_symbols-1
         printf("Press %c", symbols[r]);
-
     label_:
         int ch = _getch(); // 读取用户输入的第一个字符
         printf("\n");
